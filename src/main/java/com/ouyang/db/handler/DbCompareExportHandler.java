@@ -11,6 +11,10 @@ public interface DbCompareExportHandler {
 
 	/**
 	 * 导出库间表修改与字段信息与数据初始化对比结果compare-db-result.txt
+	 * <li>获取数据库Db对象信息</li>
+	 * <li>根据获取数据库Db信息对比表结构</li>
+	 * <li>根据获取数据库Db信息对比数据</li>
+	 * <li>对比结果输出</li>
 	 * @author Ouyang
 	 */
 	public void exportCompareDbInfo(Properties prop);

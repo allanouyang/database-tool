@@ -4,20 +4,17 @@ import java.util.Properties;
 
 import com.ouyang.db.config.PropertiesLoader;
 import com.ouyang.db.handler.DbCompareExportHandler;
+import com.ouyang.db.handler.mysql.MysqlCompareExportHandler;
 
 public class DbCompareExportMain {
 	
 	public static void main(String[] args) throws Exception {
 		String fileName = args[0];
 		Properties prop = initProperties(fileName);
-		if(prop == null){
-			throw new RuntimeException("配置文件找不到，请检查！");
-		}
 		DbCompareExportHandler dbCompareExportHandler = initDbCompareExportHandler(prop);
-		if(dbCompareExportHandler == null){
-			throw new RuntimeException("不支持的数据库配置类型！");
-		}
+		System.out.println("执行中...................");
 		executeDbCompareExportHandler(fileName, dbCompareExportHandler, prop);
+		System.out.println("执行成功，请到输出结果文件夹处理查看结果！");
 	}
 
 	/**
@@ -51,11 +48,11 @@ public class DbCompareExportMain {
 		// TODO Auto-generated method stub
 		String dbType = (String)prop.get("db.type");
 		if("mysql".equals(dbType)){
-			
+			return new MysqlCompareExportHandler();
 		} else if ("oracle".equals(dbType)){
-			
+			throw new RuntimeException("暂不支持Oracle数据库类型！");
 		}
-		return null;
+		throw new RuntimeException("不支持的数据库配置类型！");
 	}
 
 	/**
@@ -66,6 +63,10 @@ public class DbCompareExportMain {
 	private static Properties initProperties(String fileName) {
 		// TODO Auto-generated method stub
 		PropertiesLoader propertiesLoader = new PropertiesLoader(fileName);
-		return propertiesLoader.getProp();
+		Properties prop = propertiesLoader.getProp();
+		if(prop == null){
+			throw new RuntimeException("配置文件找不到，请检查！");
+		}
+		return prop;
 	}
 }

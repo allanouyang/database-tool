@@ -1,18 +1,11 @@
-package com.ouyang.db.helper;
+package com.ouyang.db.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-/**
- * 处理与连接及数据库信息相关帮助类
- * @author Ouyang
- *
- */
-@Deprecated
-public class DbHelper {
-	
+public class DbUtil {
 	public static Connection getDbConnection(Properties prop){
 		String dbDriver = (String)prop.get("db.driver");
 		String dbUrl = (String)prop.get("db.url");
