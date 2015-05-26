@@ -1,7 +1,9 @@
 package com.ouyang.db.vo;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 对比结果信息对应字段
@@ -9,30 +11,37 @@ import java.util.List;
  *
  */
 public class ResultColumn implements Serializable {
-	private String name;	
-	private String comment;	
-//	private String dataType;
-//	private String maxLength;
-//	private String isPK;
-//	private String isNull;
 	private List<ResultProperty> resultPropertys;
-	public String getName() {
-		return name;
+	/**存储表属性所有特征*/
+	private Map<String, String> mapProperty = new HashMap<String, String>();
+	private String name;
+
+	public Map<String, String> getMapProperty() {
+		return mapProperty;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setMapProperty(Map<String, String> mapProperty) {
+		this.mapProperty = mapProperty;
 	}
-	public String getComment() {
-		return comment;
+	public void add(String code, String value){
+		mapProperty.put(code, value);
+		if("name".equals(code)){
+			setName(value);
+		}
 	}
-	public void setComment(String comment) {
-		this.comment = comment;
+	public String get(String code){
+		return mapProperty.get(code);
 	}
 	public List<ResultProperty> getResultPropertys() {
 		return resultPropertys;
 	}
 	public void setResultPropertys(List<ResultProperty> resultPropertys) {
 		this.resultPropertys = resultPropertys;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 }

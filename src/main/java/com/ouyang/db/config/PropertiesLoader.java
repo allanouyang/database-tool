@@ -10,21 +10,33 @@ import java.util.Properties;
  *
  */
 public class PropertiesLoader {
-	private String configFileName;
-	public PropertiesLoader(){
-		
+	private static String configFileName;
+	private static Properties prop = null;
+
+	public static void init (String configFileName) {
+		PropertiesLoader.configFileName = configFileName;
 	}
 	
-	public PropertiesLoader(String configFileName){
-		this.configFileName = configFileName;
-	}
-	
-	public Properties getProp() {
-		Properties properties = new Properties();   
+	/**
+	 * 
+	  * 方法说明
+	  * @Discription:获取配置文件
+	  * @return
+	  * @return Properties
+	  * @Author: zhouhezhen
+	  * @Date: 2015年5月6日 上午9:43:57
+	  * @ModifyUser：zhouhezhen
+	  * @ModifyDate: 2015年5月6日 上午9:43:57
+	 */
+	public static Properties getProp() {
+		if(prop != null){
+			return prop;
+		}
 		InputStream is = null;
 		try{
-			is = PropertiesLoader.class.getResourceAsStream("/config/"+this.configFileName+".properties");
-			properties.load(is);
+			prop = new Properties();
+			is = PropertiesLoader.class.getResourceAsStream("/config/"+PropertiesLoader.configFileName+".properties");
+			prop.load(is);
 		} catch (Exception e){
 			throw new RuntimeException("读取配置文件失败，请检查是否路径不对!");
 			//关闭流
@@ -33,11 +45,10 @@ public class PropertiesLoader {
 				try {
 					is.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 		}
-		return properties;
+		return prop;
 	}
 }

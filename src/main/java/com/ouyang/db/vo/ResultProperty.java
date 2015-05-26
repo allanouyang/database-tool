@@ -7,9 +7,9 @@ package com.ouyang.db.vo;
  */
 public class ResultProperty {
 
-	private String name;
-	private String oldValue;
-	private String newValue;
+	private String name;	//字段名
+	private String oldValue;	//旧值
+	private String newValue;	//新值
 	public String getName() {
 		return name;
 	}

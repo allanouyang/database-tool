@@ -7,16 +7,16 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 数据库对应表信息，包括字段信息
+ * 数据库对应表信息，包括字段信息   用于查询结果包装
  * @author Ouyang
  *
  */
 public class DbTable implements Serializable {
 
-	private String name;
-	private String comment;
-	private int columnCount;
-	private List<DbColumn> columns = new ArrayList<DbColumn>();
+	private String name;	//表名称
+	private String comment;		//注释，说明
+	private int columnCount;	//表总字段数
+	private List<DbColumn> columns = new ArrayList<DbColumn>();		//定义字段的对象
 	private Map<String, DbColumn> mapColumn = new HashMap<String, DbColumn>();
 	
 	public String getName() {

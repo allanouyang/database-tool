@@ -10,15 +10,23 @@ import java.util.List;
  */
 public class ResultTable implements Serializable {
 
-	private String name;
-	private String comment;
-	private List<ResultColumn> moreResultColumns;
-	private List<ResultColumn> lessResultColumns;
-	private List<ResultColumn> modifyResultColumns;
-	private List<ResultProperty> resultPropertys;
+	private String name;	//表名
+	private String comment;		//注释
+	private List<ResultColumn> moreResultColumns;   //表中增加的列集合
+	private List<ResultColumn> lessResultColumns;	//表中减少的列集合
+	private List<ResultColumn> modifyResultColumns;  //表中修改的列集合
+//	private List<ResultColumn> identicalResultColumns;
+	private List<ResultProperty> resultPropertys;	//存储修改表的相关属性
+	private boolean modify = false;
 	public String getName() {
 		return name;
 	}
+//	public List<ResultColumn> getIdenticalResultColumns() {
+//		return identicalResultColumns;
+//	}
+//	public void setIdenticalResultColumns(List<ResultColumn> identicalResultColumns) {
+//		this.identicalResultColumns = identicalResultColumns;
+//	}
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -51,6 +59,12 @@ public class ResultTable implements Serializable {
 	}
 	public void setResultPropertys(List<ResultProperty> resultPropertys) {
 		this.resultPropertys = resultPropertys;
+	}
+	public boolean isModify() {
+		return modify;
+	}
+	public void setModify(boolean modify) {
+		this.modify = modify;
 	}
 	
 }

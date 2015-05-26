@@ -17,20 +17,20 @@ public interface DbCompareExportHandler {
 	 * <li>对比结果输出</li>
 	 * @author Ouyang
 	 */
-	public void exportCompareDbInfo(Properties prop);
+	public void exportCompareDbInfo();
 	/**
 	 * 导出库内公司间数据初始化对比结果compare-company-init-result.txt
 	 * @author Ouyang
 	 */
-	public void exportCompareCompanyInitInfo(Properties prop);
+	public void exportCompareCompanyInitInfo();
 	/**
 	 * 导出表信息对象集合与数据信息集合 base.dat goal.dat
 	 * @author Ouyang
 	 */
-	public void exportInfoData(Properties prop);
+	public void exportInfoData();
 	/**
 	 * 导出初始化表结构与数据sql base-table.sql,base-init-data.sql goal-table.sql,goal-init-data.sql
 	 * @author Ouyang
 	 */
-	public void exportSql(Properties prop);
+	public void exportSql();
 }

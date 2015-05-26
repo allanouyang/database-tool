@@ -3,9 +3,31 @@ package com.ouyang.db.util;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 public class DbUtil {
+	private static List<CodeName> columnCodeNames= null;
+//	private static Map<String, String> mapCodeName = null;
+	static{
+		columnCodeNames = new ArrayList<CodeName>();
+		columnCodeNames.add(new CodeName("COLUMN_NAME", "名称"));
+		columnCodeNames.add(new CodeName("DATA_TYPE", "类型"));
+		columnCodeNames.add(new CodeName("COLUMN_TYPE", "最大长度"));
+		columnCodeNames.add(new CodeName("COLUMN_KEY", "是否主键"));
+		columnCodeNames.add(new CodeName("IS_NULLABLE", "是否为空"));
+		columnCodeNames.add(new CodeName("COLUMN_COMMENT", "注释"));
+//		mapCodeName = new HashMap<String, String>();
+//		mapCodeName.put("name", "名称");
+//		mapCodeName.put("dataType", "类型");
+//		mapCodeName.put("maxLength", "最大长度");
+//		mapCodeName.put("isPK", "是否主键");
+//		mapCodeName.put("isNull", "是否为空");
+//		mapCodeName.put("comment", "注释");
+	}
 	public static Connection getDbConnection(Properties prop){
 		String dbDriver = (String)prop.get("db.driver");
 		String dbUrl = (String)prop.get("db.url");
@@ -27,6 +49,12 @@ public class DbUtil {
 		String password = (String)prop.get("goal.db.password");
 		return getConnection(dbDriver,dbUrl,username,password);
 	}
+	public static List<CodeName> getColumnCodeNames(){
+		return columnCodeNames;
+	}
+//	public static Map<String, String> getMapCodeName(){
+//		return mapCodeName;
+//	}
 	//获得db数据库连接
 	private static Connection getConnection(String driver, String url, String user, String pwd){
 		Connection conn = null;

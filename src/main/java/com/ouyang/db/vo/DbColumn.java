@@ -1,55 +1,39 @@
 package com.ouyang.db.vo;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
- * 数据库对应字段信息
+ * 数据库对应字段信息 用于查询结果包装
  * @author Ouyang
  *
  */
 public class DbColumn implements Serializable {
 
-	private String name;		
-	private String dataType;
-	private String maxLength;
-	private String isPK;
-	private String isNull;
-	private String comment;
+	/**存储表属性所有特征*/
+	private Map<String, String> mapProperty = new HashMap<String, String>();
+	private String name; //表名
+
+	public Map<String, String> getMapProperty() {
+		return mapProperty;
+	}
+	public void setMapProperty(Map<String, String> mapProperty) {
+		this.mapProperty = mapProperty;
+	}
+	public void add(String code, String value){
+		mapProperty.put(code, value);
+		if("name".equals(code)){
+			setName(value);
+		}
+	}
+	public String get(String code){
+		return mapProperty.get(code);
+	}
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getDataType() {
-		return dataType;
-	}
-	public void setDataType(String dataType) {
-		this.dataType = dataType;
-	}
-	public String getMaxLength() {
-		return maxLength;
-	}
-	public void setMaxLength(String maxLength) {
-		this.maxLength = maxLength;
-	}
-	public String getIsPK() {
-		return isPK;
-	}
-	public void setIsPK(String isPK) {
-		this.isPK = isPK;
-	}
-	public String getIsNull() {
-		return isNull;
-	}
-	public void setIsNull(String isNull) {
-		this.isNull = isNull;
-	}
-	public String getComment() {
-		return comment;
-	}
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
-	
 }
