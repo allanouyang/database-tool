@@ -8,7 +8,7 @@ public class DbTableRecordDataInfo implements Serializable {
 	private Map<String, String> mapField;
 
 	/**
-	 * 
+	 *   
 	 * @return
 	 * 2015年5月25日
 	 *
